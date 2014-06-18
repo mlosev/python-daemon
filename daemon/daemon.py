@@ -559,7 +559,7 @@ def detach_process_context():
         Reference: “Advanced Programming in the Unix Environment”,
         section 13.3, by W. Richard Stevens, published 1993 by
         Addison-Wesley.
-    
+
         """
 
     def fork_then_exit_parent(error_message):
@@ -590,7 +590,7 @@ def is_process_started_by_init():
 
         The `init` process has the process ID of 1; if that is our
         parent process ID, return ``True``, otherwise ``False``.
-    
+
         """
     result = False
 
@@ -637,7 +637,7 @@ def is_process_started_by_superserver():
         attaches it to the standard streams of the child process. If
         that is the case for this process, return ``True``, otherwise
         ``False``.
-    
+
         """
     result = False
 
@@ -717,7 +717,7 @@ def close_all_open_files(exclude=set()):
         if fd not in exclude:
             close_file_descriptor_if_open(fd)
 
-
+
 def redirect_stream(system_stream, target_stream):
     """ Redirect a system stream to a specified file.
 
@@ -733,9 +733,11 @@ def redirect_stream(system_stream, target_stream):
         target_fd = os.open(os.devnull, os.O_RDWR)
     else:
         target_fd = target_stream.fileno()
-    os.dup2(target_fd, system_stream.fileno())
 
-
+    if not system_stream.closed:
+        os.dup2(target_fd, system_stream.fileno())
+
+
 def make_default_signal_map():
     """ Make the default signal map for this system.
 

@@ -9,7 +9,7 @@ version_info = {'branch_nick': u'python-daemon.devel',
  'clean': None,
  'date': '2009-05-22 19:47:30 +1000',
  'revision_id': 'ben+python@benfinney.id.au-20090522094730-p4vsa0reh7ktt4e1',
- 'revno': 145}
+ 'revno': 147}
 
 revisions = {}
 
